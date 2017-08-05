@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeClass;
 
 
 public class BaseTest {
-	private WebDriver driver;
+	protected WebDriver driver;
 
 	@BeforeClass
 	public WebDriver startBrowser() {
@@ -17,7 +17,7 @@ public class BaseTest {
 		System.setProperty("webdriver.gecko.driver", "d:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		return driver;
 	}
@@ -30,10 +30,7 @@ public class BaseTest {
 		return new MainPage(driver);
 	}
 
-	public WebDriver getDriver() {
-		return this.driver;
-	}
-
+	
 	public void closeBrowser() {
 		if (driver != null) {
 			driver.quit();

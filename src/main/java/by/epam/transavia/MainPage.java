@@ -1,15 +1,15 @@
 package by.epam.transavia;
 
-import java.util.concurrent.TimeUnit;
+
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends BasePage {
-	public static final String URL = "https://www.transavia.com/";
+	public static final String URL = "https://www.transavia.com/en-UK/home/";
 
 	@FindBy(id = ".//*[@id='desktop']/section/div[1]/h1")
 	private WebElement inscriptionOfPage;
@@ -40,5 +40,11 @@ public class MainPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	
+	public String textOfMainPageTitle(){
+		
+		String text=inscriptionOfPage.getText();
+		
+		return text;
+		
+	}
 }
