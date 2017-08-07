@@ -5,12 +5,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class MainPageTest extends BaseTest {
-	public static final String MAINPAGETITLE = "Where do you want to go?";
-	public static final String COUNTRYOFDEPARTURE = "Barcelona, Spain";
-	public static final String COUNTRYOFDESTINATION = "Munich, Germany";
-	public static final String OUTBOUNDDATE = "21 Aug 2017";
+	private static final String MAIN_PAGE_TITLE = "Where do you want to go?";
+	private static final String COUNTRY_OF_DEPARTURE = "Barcelona, Spain";
+	private static final String COUNTRY_OF_DESTINATION = "Munich, Germany";
+	private static final String OUTBOUND_DATE = "21 Aug 2017";
 
 	private MainPage mainPage;
+	private BookFlightPage bookFlightPage;
 
 	@BeforeClass
 	public void openMainPage() {
@@ -27,25 +28,25 @@ public class MainPageTest extends BaseTest {
 	@Test(priority = 1)
 	public void titleTest() {
 		String textOnMainPage = mainPage.textOfMainPageTitle();
-		Assert.assertEquals(textOnMainPage, MAINPAGETITLE);
+		Assert.assertEquals(textOnMainPage, MAIN_PAGE_TITLE);
 	}
 
 	@Test(priority = 2)
 	public void departureCountryTest() {
-		String departureCountry = mainPage.selectCountryOfDeparture(COUNTRYOFDEPARTURE);
-		Assert.assertEquals(departureCountry, COUNTRYOFDEPARTURE);
+		String departureCountry = mainPage.selectCountryOfDeparture(COUNTRY_OF_DEPARTURE);
+		Assert.assertEquals(departureCountry, COUNTRY_OF_DEPARTURE);
 	}
 
 	@Test(priority = 3)
 	public void destinationCountryTest() {
-		String destinationCountry = mainPage.selectCountryOfDestination(COUNTRYOFDESTINATION);
-		Assert.assertEquals(destinationCountry, COUNTRYOFDESTINATION);
+		String destinationCountry = mainPage.selectCountryOfDestination(COUNTRY_OF_DESTINATION);
+		Assert.assertEquals(destinationCountry, COUNTRY_OF_DESTINATION);
 	}
 
 	@Test(priority = 4)
 	public void outboundDateTest() {
-		String outboundDate = mainPage.selectOutboundDate(OUTBOUNDDATE);
-		Assert.assertEquals(outboundDate, OUTBOUNDDATE);
+		String outboundDate = mainPage.selectOutboundDate(OUTBOUND_DATE);
+		Assert.assertEquals(outboundDate, OUTBOUND_DATE);
 	}
 
 	@Test(priority = 5)
@@ -68,7 +69,8 @@ public class MainPageTest extends BaseTest {
 	}
 	@Test(priority = 8)
 	public void flightTest() {
-		String flightNumber = mainPage.searchFlight();
-		System.out.println(flightNumber);
+		bookFlightPage = mainPage.searchFlight();
+		String flightInformation=bookFlightPage.getFlightInformation();
+		Assert.assertEquals(flightInformation, "Barcelona – Munich");
 	}
 }

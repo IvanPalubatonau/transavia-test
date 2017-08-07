@@ -2,11 +2,12 @@ package by.epam.transavia;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MainPage extends BasePage {
+
 	public static final String URL = "https://www.transavia.com/en-UK/home/";
 
 	@FindBy(xpath = "//*[@id='desktop']/section/div[1]/h1")
@@ -37,13 +38,23 @@ public class MainPage extends BasePage {
 	private WebElement bookingPassengersWindow;
 
 	@FindBy(xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[1]/div/div")
-	private WebElement countOfBookingPassengers;
-	
+	private WebElement quantityOfBookingPassengers;
+
+	@FindBy(xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/div[2]/div/div/button[2]")
+	private WebElement addAdultButton;
+
+	@FindBy(xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[2]/div/div/div[2]/div/div/button[2]")
+	private WebElement addChildrenButton;
+
+	@FindBy(xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[1]/div[3]/div/div/div[2]/div/div/button[2]")
+	private WebElement addBabyButton;
+
+	@FindBy(xpath = ".//*[@id='desktop']/section/div[2]/div[3]/div/div[2]/div[2]/div[2]/button")
+	private WebElement saveQuantityOfPassengerButton;
+
 	@FindBy(xpath = ".//*[@id='desktop']/section/div[3]/div/button")
 	private WebElement searchButton;
-	
-	@FindBy(xpath = ".//*[@id='top']/div/div/div[3]/section/section/div/div[1]/div[1]/div/div[1]/div/h4")
-	private WebElement flight;
+
 	
 
 	public MainPage(WebDriver driver) {
@@ -107,17 +118,40 @@ public class MainPage extends BasePage {
 	public String bookingPassenger() {
 
 		bookingPassengersWindow.click();
-		String countOfPassengers = countOfBookingPassengers.getAttribute("innerHTML");
-		return countOfPassengers;
+		String quantityOfPassengers = quantityOfBookingPassengers.getAttribute("innerHTML");
+		return quantityOfPassengers;
 
 	}
 
-	public String searchFlight() {
+	public BookFlightPage searchFlight() {
 
 		searchButton.click();
-		String flightNumber = flight.getAttribute("innerHTML");
-		return flightNumber;
-		
+		//String flightNumber = flight.getAttribute("innerHTML");
+		return new BookFlightPage(driver);
+
+	}
+
+	public String selectQuantityOfPassenger(int addAdult, int addChildren) {
+
+		bookingPassengersWindow.click();
+
+		if (addAdult > 1) {
+			for (int i = 0; i < addAdult - 1; i++) {
+				addAdultButton.click();
+
+			}
+		}
+
+		if (addChildren > 0) {
+			for (int i = 0; i < addChildren; i++) {
+				addChildrenButton.click();
+
+			}
+		}
+
+		saveQuantityOfPassengerButton.click();
+		String quantityOfPassengers = quantityOfBookingPassengers.getAttribute("innerHTML");
+		return quantityOfPassengers;
 
 	}
 }
