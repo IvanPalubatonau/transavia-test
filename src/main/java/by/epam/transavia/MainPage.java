@@ -2,7 +2,6 @@ package by.epam.transavia;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -54,7 +53,12 @@ public class MainPage extends BasePage {
 
 	@FindBy(xpath = ".//*[@id='desktop']/section/div[3]/div/button")
 	private WebElement searchButton;
-
+	
+	@FindBy(xpath = "html/body/header/nav/div[1]/div[1]/ul/li[3]/a")
+	private WebElement manageBookingButton;
+	
+	@FindBy(xpath = ".//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]")
+	private WebElement viewBookingButton;
 	
 
 	public MainPage(WebDriver driver) {
@@ -126,7 +130,6 @@ public class MainPage extends BasePage {
 	public BookFlightPage searchFlight() {
 
 		searchButton.click();
-		//String flightNumber = flight.getAttribute("innerHTML");
 		return new BookFlightPage(driver);
 
 	}
@@ -138,14 +141,12 @@ public class MainPage extends BasePage {
 		if (addAdult > 1) {
 			for (int i = 0; i < addAdult - 1; i++) {
 				addAdultButton.click();
-
 			}
 		}
 
 		if (addChildren > 0) {
 			for (int i = 0; i < addChildren; i++) {
 				addChildrenButton.click();
-
 			}
 		}
 
@@ -154,4 +155,18 @@ public class MainPage extends BasePage {
 		return quantityOfPassengers;
 
 	}
+	
+	public void manageBooking() {
+
+		manageBookingButton.click();
+		
+	}
+	
+	public LogonPage viewBooking() {
+
+		viewBookingButton.click();
+		return new LogonPage(driver);
+		
+	}
+
 }
