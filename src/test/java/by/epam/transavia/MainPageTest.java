@@ -8,7 +8,10 @@ public class MainPageTest extends BaseTest {
 	private static final String MAIN_PAGE_TITLE = "Where do you want to go?";
 	private static final String COUNTRY_OF_DEPARTURE = "Barcelona, Spain";
 	private static final String COUNTRY_OF_DESTINATION = "Munich, Germany";
-	private static final String OUTBOUND_DATE = "21 Aug 2017";
+	private static final String OUTBOUND_DATE="21 Aug 2017";
+	private static final String EXCPECTED_ARRIVAL_DATE = "Single flight";
+	private static final String EXPECTED_QUANTITY_PASSENGER = "1 Adult";
+	private static final String EXPECTED_FLIGHT = "Barcelona – Munich";
 
 	private MainPage mainPage;
 	private BookFlightPage bookFlightPage;
@@ -59,18 +62,18 @@ public class MainPageTest extends BaseTest {
 	@Test(priority = 6)
 	public void arrivalDateTest() {
 		String arrivalDate = mainPage.selectArrivakDate();
-		Assert.assertEquals(arrivalDate, "Single flight");
+		Assert.assertEquals(arrivalDate, EXCPECTED_ARRIVAL_DATE);
 	}
 
 	@Test(priority = 7)
 	public void bookingPassengerTest() {
 		String countOfPassengers = mainPage.bookingPassenger();
-		Assert.assertEquals(countOfPassengers, "1 Adult");
+		Assert.assertEquals(countOfPassengers, EXPECTED_QUANTITY_PASSENGER);
 	}
 	@Test(priority = 8)
 	public void flightTest() {
 		bookFlightPage = mainPage.searchFlight();
 		String flightInformation=bookFlightPage.getFlightInformation();
-		Assert.assertEquals(flightInformation, "Barcelona – Munich");
+		Assert.assertEquals(flightInformation, EXPECTED_FLIGHT);
 	}
 }

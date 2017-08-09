@@ -9,6 +9,9 @@ public class BookingOverviewPage extends BasePage {
 
 	@FindBy(xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[1]/div[4]/div/p/em/time")
 	private WebElement arrivalTimeText;
+	
+	@FindBy(xpath = ".//*[@id='top']/div[1]/div/div[1]/div[2]/div[2]/div/div/div/div[3]/a")
+	private WebElement bookingDetailsButton;
 
 	public BookingOverviewPage(WebDriver driver) {
 		super(driver);
@@ -20,5 +23,10 @@ public class BookingOverviewPage extends BasePage {
 		String arrivalTime = arrivalTimeText.getText();
 		return arrivalTime;
 
+	}
+	public BookingDetailPage transitionBookingDetail() {
+
+		bookingDetailsButton.click();
+		return new BookingDetailPage(driver);
 	}
 }
