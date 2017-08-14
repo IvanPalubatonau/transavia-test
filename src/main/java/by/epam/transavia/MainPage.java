@@ -105,7 +105,6 @@ public class MainPage extends BasePage {
 	public boolean returnOnToUncheked() {
 
 		checkBox.click();
-		checkBox.click();
 		boolean check = checkBox.isSelected();
 		return check;
 

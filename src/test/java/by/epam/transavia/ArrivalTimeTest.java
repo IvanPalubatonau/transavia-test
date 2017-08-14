@@ -1,5 +1,6 @@
 package by.epam.transavia;
 
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -15,20 +16,17 @@ public class ArrivalTimeTest extends BaseTest {
 	private static final String FLIGHT_DATE = "9 June 2016";
 	private static final String EXPECTED_ARRIVAL_TIME = "23:35";
 	
+	
 
 	@BeforeClass
 	public void openMainPage() {
 
 		mainPage = navigate(MainPage.URL);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waiting();
 		mainPage.manageBooking();
 		logonPage = mainPage.viewBooking();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

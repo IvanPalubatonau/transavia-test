@@ -1,5 +1,6 @@
 package by.epam.transavia;
 
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,6 +13,7 @@ public class MainPageTest extends BaseTest {
 	private static final String EXCPECTED_ARRIVAL_DATE = "Single flight";
 	private static final String EXPECTED_QUANTITY_PASSENGER = "1 Adult";
 	private static final String EXPECTED_FLIGHT = "Barcelona – Munich";
+	
 
 	private MainPage mainPage;
 	private BookFlightPage bookFlightPage;
@@ -20,11 +22,7 @@ public class MainPageTest extends BaseTest {
 	public void openMainPage() {
 
 		mainPage = navigate(MainPage.URL);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waiting();
 
 	}
 
