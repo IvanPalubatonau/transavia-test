@@ -40,7 +40,7 @@ public class BaseTest {
 
 	public void waiting() {
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(7000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

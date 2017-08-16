@@ -14,6 +14,7 @@ public class TotalTicketSumTest extends BaseTest {
 	private static final String COUNTRY_OF_DESTINATION = "Paris (Orly South), France";
 	private static final int QUANTITY_OF_ADULT = 2;
 	private static final int QUANTITY_OF_CHILDREN = 1;
+	private static final String EXPECTED_AMOUNT = "€ 1,095.00";
 	
 
 	@BeforeClass
@@ -60,7 +61,7 @@ public class TotalTicketSumTest extends BaseTest {
 	public void totalPriceTest() {
 		String totalPrice = extraInfornationTripPage.getTotalPrice();
 		System.out.println(totalPrice);
-		Assert.assertEquals(totalPrice, "€ 1,095.00");
+		Assert.assertEquals(totalPrice, EXPECTED_AMOUNT);
 
 	}
 

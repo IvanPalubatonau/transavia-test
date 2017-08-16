@@ -60,6 +60,9 @@ public class MainPage extends BasePage {
 	@FindBy(xpath = ".//*[@id='horizontal-sub-navigation-manageyourbooking']/div/div[2]/div/div[1]/div/ul/li[2]/a/div/span[2]")
 	private WebElement viewBookingButton;
 	
+	@FindBy(xpath = ".//*[@id='desktop']/section/div[3]/ul/li[2]/a")
+	private WebElement multipleDestinationButtton;
+	
 
 	public MainPage(WebDriver driver) {
 		super(driver);
@@ -168,4 +171,10 @@ public class MainPage extends BasePage {
 		
 	}
 
+	public MultipleFlightPage openMultiplePage() {
+
+		multipleDestinationButtton.click();
+		return new MultipleFlightPage(driver);
+		
+	}
 }
